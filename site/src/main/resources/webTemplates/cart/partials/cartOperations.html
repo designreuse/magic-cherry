@@ -1,0 +1,81 @@
+<div class="cart-actions" th:if="${cart.itemCount > 0 and isConfirmationContext == null and isCheckoutContext == null}">
+    <div>
+        <a th:href="@{/checkout}" class="btn btn-primary">
+            <span th:utext="#{cart.checkout}">Checkout</span> <i class="material-icons">keyboard_arrow_right</i>
+        </a>
+    </div>
+    <div class="cart-action-divider">or</div>
+    <div class="paypal-payment-method-container">
+        <div id="paypal-button">
+            <!--<img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="center"/>-->
+        </div>
+        <!--<p class="config-warning">-->
+            <!--Your PayPal information has not been configured.-->
+            <!--To accept transactions via PayPal, you'll need to complete the <a href="https://www.broadleafcommerce.com/docs/paypal/current/paypal-quick-start">configuration setup</a>.-->
+        <!--</p>-->
+    </div>
+</div>
+<div class="cart-actions js-hiddenPerformCheckoutActions is-hidden" th:if="${isCheckoutContext != null and isConfirmationContext == null}">
+    <a href="#" class="btn btn-primary pull-right js-performCheckout">
+        <span th:utext="#{checkout.completion.submit}">Place Your Order</span> <i class="material-icons">keyboard_arrow_right</i>
+    </a>
+</div>
+<!-- ADD BY ROC BEGIN -->
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    paypal.Button.render({
+        env : [[${@environment.getProperty('gateway.paypal.smart.button.env')}]],
+
+        // Specify the style of the button
+        style: {
+            layout: 'vertical',  // horizontal | vertical
+            size:   'medium',    // medium | large | responsive
+            shape:  'rect',      // pill | rect
+            color:  'gold'       // gold | blue | silver | white | black
+        },
+
+        // Specify allowed and disallowed funding sources
+        //
+        // Options:
+        // - paypal.FUNDING.CARD
+        // - paypal.FUNDING.CREDIT
+        // - paypal.FUNDING.ELV
+        funding: {
+            allowed: [
+                paypal.FUNDING.CARD,
+                paypal.FUNDING.CREDIT
+            ],
+            disallowed: []
+        },
+
+        payment : function(data, actions) {
+            return BLC.post({
+                url : [[${@environment.getProperty('gateway.paypal.smart.button.payment.url')}]],
+                data : {
+                    performCheckout : false
+                }
+            }).then(function(res) {
+                return res.id;
+            });
+        },
+        onAuthorize : function(data, actions) {
+            BLC.get({
+                url : [[${@environment.getProperty('gateway.paypal.smart.button.authorize.url')}]],
+                data : {
+                    paymentId : data.paymentID,
+                    payerId : data.payerID
+                }
+            });
+        }
+//        onAuthorize : function(data, actions) {
+//            BLC.get({
+//                url : [[${@environment.getProperty('gateway.paypal.smart.button.authorize.url')}]],
+//                data : {
+//                    billingToken: data.billingToken,
+//                    paymentToken: data.paymentToken
+//                }
+//            });
+//        }
+    }, '#paypal-button');
+</script>
+<!-- ADD BY ROC END -->
