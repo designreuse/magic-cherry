@@ -17,15 +17,19 @@
 </div>
 
 <div id="payment_methods" th:fragment="payment-methods">
-    <div class="payment-method-selectors js-paymentMethodSelectors">
+    <!-- UPDATE BEGIN BY ROC -->
+    <div class="payment-method-selectors js-paymentMethodSelectors is-hidden">
         <div class="nav-align-center">
             <ul class="nav nav-pills nav-pills-primary text-center">
                 <li class="center-pill" data-value="CreditCard"
-                    th:classappend="${not #paymentMethod.cartContainsThirdPartyPayment()}? 'active'">
+                         th:classappend="${not #paymentMethod.cartContainsThirdPartyPayment()}? 'active'">
                     <a href="#CreditCard" data-toggle="pill" th:utext="#{checkout.paymentMethod.creditCard}">Credit Card</a>
                 </li>
-                <li class="center-pill" data-value="PayPal"
-                    th:classappend="${#paymentMethod.cartContainsCreditCardPayment()}? 'active'">
+                <!--<li class="center-pill" data-value="PayPal"-->
+                    <!--th:classappend="${#paymentMethod.cartContainsCreditCardPayment()}? 'active'">-->
+                    <!--<a href="#PayPal" data-toggle="pill" th:utext="#{checkout.paymentMethod.payPal}">PayPal</a>-->
+                <!--</li>-->
+                <li class="center-pill " data-value="PayPal" th:classappend="'active'">
                     <a href="#PayPal" data-toggle="pill" th:utext="#{checkout.paymentMethod.payPal}">PayPal</a>
                 </li>
                 <li class="center-pill" data-value="COD">
@@ -35,21 +39,32 @@
         </div>
     </div>
 
-    <div class="payment-method-content">
+    <!--<div class="payment-method-content">-->
+        <!--<div class="payment_info js-paymentInfoForm">-->
+            <!--<div class="tab-content">-->
+                <!--<div id="CreditCard" class="tab-pane"-->
+                     <!--th:classappend="${not #paymentMethod.cartContainsThirdPartyPayment()}? 'active'">-->
+                    <!--<th:block th:replace="~{checkout/payment/creditCardPaymentMethodForm :: form}" />-->
+                <!--</div>-->
+                <!--<div id="PayPal" class="tab-pane"-->
+                     <!--th:classappend="${#paymentMethod.cartContainsThirdPartyPayment()}? 'active'">-->
+                    <!--<th:block th:replace="~{checkout/payment/payPalPaymentMethodForm :: form}" />-->
+                <!--</div>-->
+                <!--<div id="COD" class="tab-pane">-->
+                    <!--<th:block th:replace="~{checkout/payment/codPaymentMethodForm :: form}" />-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="payment-methods payment-method-content">
         <div class="payment_info js-paymentInfoForm">
-            <div class="tab-content">
-                <div id="CreditCard" class="tab-pane"
-                     th:classappend="${not #paymentMethod.cartContainsThirdPartyPayment()}? 'active'">
-                    <th:block th:replace="~{checkout/payment/creditCardPaymentMethodForm :: form}" />
-                </div>
+            <div class="nav-align-center tab-content">
                 <div id="PayPal" class="tab-pane"
-                     th:classappend="${#paymentMethod.cartContainsThirdPartyPayment()}? 'active'">
+                     th:classappend="'active'">
                     <th:block th:replace="~{checkout/payment/payPalPaymentMethodForm :: form}" />
-                </div>
-                <div id="COD" class="tab-pane">
-                    <th:block th:replace="~{checkout/payment/codPaymentMethodForm :: form}" />
                 </div>
             </div>
         </div>
     </div>
+    <!-- UPDATE END BY ROC -->
 </div>

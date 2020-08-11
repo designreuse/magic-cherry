@@ -83,7 +83,7 @@ public class CartController extends BroadleafCartController {
     }
 
     /*
-     * The Heat Clinic does not show the cart when a product is added. Instead, when the product is added via an AJAX
+     * The Magic Cherry does not show the cart when a product is added. Instead, when the product is added via an AJAX
      * POST that requests JSON, we only need to return a few attributes to update the state of the page. The most
      * efficient way to do this is to call the regular add controller method, but instead return a map that contains
      * the necessary attributes. By using the @ResposeBody tag, Spring will automatically use Jackson to convert the
@@ -106,7 +106,7 @@ public class CartController extends BroadleafCartController {
     }
 
     /*
-     * The Heat Clinic does not support adding products with required product options from a category browse page
+     * The Magic Cherry does not support adding products with required product options from a category browse page
      * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
      * for the given product so that the required options may be chosen.
      */

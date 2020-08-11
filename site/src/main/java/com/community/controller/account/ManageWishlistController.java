@@ -75,7 +75,7 @@ public class ManageWishlistController extends BroadleafManageWishlistController 
     }
     
     /*
-     * The Heat Clinic does not support adding products with required product options from a category browse page
+     * The Magic Cherry does not support adding products with required product options from a category browse page
      * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
      * for the given product so that the required options may be chosen.
      */

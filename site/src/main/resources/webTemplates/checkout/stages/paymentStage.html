@@ -15,7 +15,7 @@
     </div>
 
     <div class="checkout-stage js-checkoutStage" th:classappend="${isLaterStage}? 'is-hidden'">
-        <th:block th:replace="~{checkout/partials/demoDisclaimer}"/>
+        <!--<th:block th:replace="~{checkout/partials/demoDisclaimer}"/>-->
 
         <div class="js-readOnlyPaymentStageContent" th:classappend="${!isPreviousStage}? 'is-hidden'">
             <th:block th:replace="~{checkout/partials/paymentMethods :: read-only-payment-methods}" />

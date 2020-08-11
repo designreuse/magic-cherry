@@ -78,6 +78,11 @@
             <artifactId>broadleaf-paypal</artifactId>
             <!--<version>insert version here</version>-->
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.codehaus.groovy</groupId>-->
+            <!--<artifactId>groovy-all</artifactId>-->
+            <!--&lt;!&ndash;<scope>test</scope>&ndash;&gt;-->
+        <!--</dependency>-->
     </dependencies>
 
 </project>

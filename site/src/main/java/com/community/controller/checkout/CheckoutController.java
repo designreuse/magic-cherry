@@ -152,7 +152,7 @@ public class CheckoutController extends BroadleafCheckoutController {
 
             //Populate Billing Address per UI requirements
             //For this example, we'll copy the address from the temporary Credit Card's Billing address and archive the payment,
-            // (since Heat Clinic's checkout template saves and validates the address in a previous section).
+            // (since Magic Cherry's checkout template saves and validates the address in a previous section).
             OrderPayment tempPayment = getTempCreditCardPayment(cart);
             if (tempPayment != null) {
                 paymentNonce.setBillingAddress(addressService.copyAddress(tempPayment.getBillingAddress()));
